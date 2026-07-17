@@ -1,0 +1,245 @@
+/* GeoDispatch Engine — design tokens and base styles.
+ *
+ * Visual direction: a dispatch control-room, not a consumer app. Dark
+ * slate canvas so the map and route lines (the actual computed output)
+ * stay the visual focus; amber marks live/active state (drivers, alerts)
+ * the way ops dashboards traditionally do; teal marks computed results
+ * (routes, selected driver) to separate "what is" from "what we found".
+ */
+
+:root {
+  --color-bg: #0b1220;
+  --color-surface: #111a2c;
+  --color-surface-raised: #16223a;
+  --color-border: #22314f;
+  --color-text: #e7ecf5;
+  --color-text-muted: #8d9bb8;
+  --color-amber: #f5a524;
+  --color-teal: #2dd4bf;
+  --color-red: #f2555a;
+  --color-blue: #4c8dff;
+
+  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-content {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+}
+
+.navbar-brand .mark {
+  color: var(--color-amber);
+  font-weight: 700;
+}
+
+.navbar-brand .name {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.navbar-link {
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.navbar-link:hover {
+  color: var(--color-text);
+  background: var(--color-surface-raised);
+}
+
+.navbar-link.active {
+  color: var(--color-bg);
+  background: var(--color-amber);
+}
+
+/* Dispatch simulator page */
+.dispatch-page {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  height: 100%;
+}
+
+.map-pane {
+  position: relative;
+  background: var(--color-surface);
+}
+
+.map-placeholder {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.side-panel {
+  border-left: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: 1.25rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.side-panel h2 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin: 0 0 0.75rem 0;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed var(--color-border);
+  font-size: 0.9rem;
+}
+
+.stat-row .label {
+  color: var(--color-text-muted);
+}
+
+.stat-row .value {
+  font-family: var(--font-mono);
+}
+
+.button-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.btn {
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.btn:hover {
+  border-color: var(--color-teal);
+}
+
+.btn-primary {
+  background: var(--color-amber);
+  border-color: var(--color-amber);
+  color: var(--color-bg);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  border-color: var(--color-amber);
+}
+
+.empty-note {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* Benchmarks page */
+.benchmarks-page {
+  padding: 1.5rem 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.benchmarks-page h1 {
+  font-family: var(--font-display);
+}
+
+.benchmark-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.benchmark-table th,
+.benchmark-table td {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.benchmark-table th {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+}
+
+.benchmark-table td.numeric {
+  font-family: var(--font-mono);
+}

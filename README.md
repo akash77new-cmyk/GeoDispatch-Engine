@@ -281,16 +281,4 @@ This project demonstrates practical implementation of:
 
 ---
 
-# 📸 Screenshots
-
-> Screenshots, benchmark results, and a demo GIF will be added once the project is complete.
-
----
-
-# 🤝 Contributing
-
-Contributions, suggestions, and feedback are always welcome! Feel free to open an issue or submit a pull request to discuss ideas or improvements.
-
----
-
 ## ⭐ If you found this project interesting, consider giving it a star!
